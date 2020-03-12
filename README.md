@@ -4,12 +4,41 @@
 
 ---
 
-#### 1. 什么是Apollo?
+- **文章目录**
+
+* [1\. 什么是Apollo?](#1-%E4%BB%80%E4%B9%88%E6%98%AFapollo)
+* [2\. 特点](#2-%E7%89%B9%E7%82%B9)
+* [3\. 设计(<a href="https://github\.com/ctripcorp/apollo/wiki/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E4%BB%8B%E7%BB%8D">官方文档参考地址</a>)](#3-%E8%AE%BE%E8%AE%A1%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%8F%82%E8%80%83%E5%9C%B0%E5%9D%80)
+  * [3\.1 基础模型](#31-%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9E%8B)
+  * [3\.2 界面概览](#32-%E7%95%8C%E9%9D%A2%E6%A6%82%E8%A7%88)
+  * [3\.3  添加/修改配置项](#33--%E6%B7%BB%E5%8A%A0%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E9%A1%B9)
+  * [3\.4  发布配置](#34--%E5%8F%91%E5%B8%83%E9%85%8D%E7%BD%AE)
+  * [3\.5 客户端获取配置（Java API样例）](#35-%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%8E%B7%E5%8F%96%E9%85%8D%E7%BD%AEjava-api%E6%A0%B7%E4%BE%8B)
+  * [3\.6 客户端监听配置变化](#36-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9B%91%E5%90%AC%E9%85%8D%E7%BD%AE%E5%8F%98%E5%8C%96)
+  * [3\.7 Spring集成样例](#37-spring%E9%9B%86%E6%88%90%E6%A0%B7%E4%BE%8B)
+* [4\. 客户端集成Apollo](#4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%9B%86%E6%88%90apollo)
+  * [4\.1 开发环境](#41-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83)
+    * [4\.1\.1 java](#411-java)
+    * [4\.1\.2 mysql](#412-mysql)
+    * [4\.1\.3 下载Quick Start安装包](#413-%E4%B8%8B%E8%BD%BDquick-start%E5%AE%89%E8%A3%85%E5%8C%85)
+  * [4\.2 安装部署](#42-%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2)
+    * [4\.2\.1 创建数据库](#421-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93)
+    * [4\.2\.2 配置数据库链接](#422-%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E9%93%BE%E6%8E%A5)
+    * [4\.2\.3 启动Apollo](#423-%E5%90%AF%E5%8A%A8apollo)
+  * [4\.3 使用Apollo配置中心](#43-%E4%BD%BF%E7%94%A8apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83)
+    * [4\.3\.1 服务器端搭建](#431-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%90%AD%E5%BB%BA)
+    * [4\.3\.2 客户端搭建基于SpringBoot](#432-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8Espringboot)
+  * [4\.4 使用Apollo灰度发布](#44-%E4%BD%BF%E7%94%A8apollo%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83)
+    * [4\.4\.1 准备两台服务器](#441-%E5%87%86%E5%A4%87%E4%B8%A4%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8)
+* [5\. 常见问题](#5-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
+* [6\. Apollo相比于Spring Cloud Config有什么优势?](#6-apollo%E7%9B%B8%E6%AF%94%E4%BA%8Espring-cloud-config%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF)
+
+# 1. 什么是Apollo?
 
 [Apollo](https://github.com/ctripcorp/apollo)
 （阿波罗）是携程框架部门研发的分布式配置中心，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。
 
-#### 2. 特点
+# 2. 特点
 
 * **统一管理不同环境、不同集群的配置**
   * Apollo提供了一个统一界面集中式管理不同环境（environment）、不同集群（cluster）、不同命名空间（namespace）的配置。
@@ -45,9 +74,9 @@
   * 还有一些使用方如DAL，不仅有特定的格式，而且对输入的值也需要进行校验后方可保存，如检查数据库、用户名和密码是否匹配。
   * 对于这类应用，Apollo支持应用方通过开放接口在Apollo进行配置的修改和发布，并且具备完善的授权和权限控制
 
-#### 3. 设计([官方文档参考地址](https://github.com/ctripcorp/apollo/wiki/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E4%BB%8B%E7%BB%8D))
+# 3. 设计([官方文档参考地址](https://github.com/ctripcorp/apollo/wiki/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E4%BB%8B%E7%BB%8D))
 
-##### 3.1 基础模型
+## 3.1 基础模型
 
 如下即是Apollo的基础模型：
 
@@ -57,11 +86,11 @@
 
 ![](https://github.com/ctripcorp/apollo/raw/master/doc/images/basic-architecture.png)
 
-##### 3.2 界面概览
+## 3.2 界面概览
 
 ![](https://github.com/ctripcorp/apollo/raw/master/doc/images/apollo-home-screenshot.png)
 
-##### 3.3  添加/修改配置项
+## 3.3  添加/修改配置项
 
 用户可以通过配置中心界面方便的添加/修改配置项，更多使用说明请参见应用[接入指南](https://github.com/ctripcorp/apollo/wiki/%E5%BA%94%E7%94%A8%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97)
 
@@ -71,7 +100,7 @@
 
 ![](https://github.com/ctripcorp/apollo/raw/master/doc/images/edit-item.png)
 
-##### 3.4  发布配置
+## 3.4  发布配置
 
 通过配置中心发布配置：
 
@@ -82,7 +111,7 @@
 ![](https://github.com/ctripcorp/apollo/raw/master/doc/images/publish-items.png)
 
 
-##### 3.5 客户端获取配置（Java API样例）
+## 3.5 客户端获取配置（Java API样例）
 
 配置发布后，就能在客户端获取到了，以Java为例，获取配置的示例代码如下。Apollo客户端还支持和Spring整合，更多客户端使用说明请参见[Java客户端使用指南](https://github.com/ctripcorp/apollo/wiki/Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)。
 
@@ -92,7 +121,7 @@ Integer defaultRequestTimeout = 200;
 Integer requestTimeout = config.getIntProperty("requestTimeout", defaultRequestTimeout);
 ```
 
-##### 3.6 客户端监听配置变化
+## 3.6 客户端监听配置变化
 
 通过上述获取配置代码，应用就能实时获取到最新的配置了。
 
@@ -114,7 +143,7 @@ config.addChangeListener(new ConfigChangeListener() {
 });
 ```
 
-##### 3.7 Spring集成样例
+## 3.7 Spring集成样例
 
 Apollo和Spring也可以很方便地集成，只需要标注@EnableApolloConfig后就可以通过@Value获取配置信息：
 
@@ -130,11 +159,11 @@ public class SomeBean {
 }
 ```
 
-#### 4. 客户端集成Apollo
+# 4. 客户端集成Apollo
 
-##### 4.1 开发环境
+## 4.1 开发环境
 
-###### 4.1.1 java
+### 4.1.1 java
 
 * **Apollo服务端：1.8+**
 * **Apollo客户端：1.7+**
@@ -154,7 +183,7 @@ Windows用户请确保JAVA_HOME环境变量已经设置。
 ```
 
 
-###### 4.1.2 mysql
+### 4.1.2 mysql
 
 * **版本要求：5.6.5+**
 
@@ -166,7 +195,7 @@ Apollo的表结构对timestamp使用了多个default声明，所以需要5.6.5�
 SHOW VARIABLES WHERE Variable_name = 'version';
 ```
 
-###### 4.1.3 下载Quick Start安装包
+### 4.1.3 下载Quick Start安装包
 
 我们准备好了一个Quick Start安装包，大家只需要下载到本地，就可以直接使用，免去了编译、打包过程。
 
@@ -191,9 +220,9 @@ Quick Start只针对本地测试使用，所以一般用户不需要自己下载
 在根目录下执行mvn clean package -pl apollo-assembly -am -DskipTests=true
 复制apollo-assembly/target下的jar包，rename为apollo-all-in-one.jar
 
-##### 4.2 安装部署
+## 4.2 安装部署
 
-###### 4.2.1 创建数据库
+### 4.2.1 创建数据库
 
 Apollo服务端共需要两个数据库：ApolloPortalDB和ApolloConfigDB，我们把数据库、表的创建和样例数据都分别准备了sql文件，只需要导入数据库即可。
 
@@ -207,7 +236,7 @@ source /your_local_path/sql/apolloportaldb.sql
 source /your_local_path/sql/apolloconfigdb.sql
 ```
 
-###### 4.2.2 配置数据库链接
+### 4.2.2 配置数据库链接
 
 Apollo服务端需要知道如何连接到你前面创建的数据库，所以需要编辑demo.sh，修改ApolloPortalDB和ApolloConfigDB相关的数据库连接串信息。
 
@@ -225,7 +254,7 @@ apollo_portal_db_username=用户名
 apollo_portal_db_password=密码（如果没有密码，留空即可）
 ```
 
-###### 4.2.3 启动Apollo
+### 4.2.3 启动Apollo
 
 Quick Start脚本会在本地启动3个服务，分别使用8070, 8080, 8090端口，请确保这3个端口当前没有被使用。
 
@@ -264,9 +293,9 @@ Waiting for portal startup......
 Portal started. You can visit http://localhost:8070 now!
 ```
 
-##### 4.3 使用Apollo配置中心
+## 4.3 使用Apollo配置中心
 
-###### 4.3.1 服务器端搭建
+### 4.3.1 服务器端搭建
 
 访问[http://localhost:8070](http://localhost:8070)
 
@@ -297,7 +326,7 @@ Portal started. You can visit http://localhost:8070 now!
 
 ![](https://gitee.com/FocusProgram/PicGo/raw/master/20200307105824.png)
 
-###### 4.3.2 客户端搭建基于SpringBoot
+### 4.3.2 客户端搭建基于SpringBoot
 
 1.引入maven依赖
 
@@ -406,9 +435,9 @@ public class ApollodemoApplication {
 
 ![](https://gitee.com/FocusProgram/PicGo/raw/master/20200307111710.png)
 
-##### 4.3 使用Apollo灰度发布
+## 4.4 使用Apollo灰度发布
 
-###### 4.4.1 准备两台服务器
+### 4.4.1 准备两台服务器
 
 | 集群节点      | 端口   |
 |-------------------|------|
@@ -445,7 +474,7 @@ Apollo添加灰度发布
 
 > 至此，Apollo的灰度发布已经生效，如果测试灰度发布节点没有问题可以进行全量发布同步到所有的节点，如果测试灰度发布节点存在问题可以放弃灰度发布，会恢复至以前的配置文件版本。
 
-#### 5. 常见问题
+# 5. 常见问题
 
 * **问题一：只在Maven中导入了client依赖**
 
@@ -498,7 +527,7 @@ url: http://此处是私有ip:8080/configs/bitongchong_bos/default/application?i
 -Dapollo.meta=http://ip:8080 -Denv=dev
 ```
 
-#### 6. Apollo相比于Spring Cloud Config有什么优势?
+# 6. Apollo相比于Spring Cloud Config有什么优势?
 
 | 功能点      | Apollo                                                      | Spring Cloud Config                  | 备注                                                   |
 |----------|-------------------------------------------------------------|--------------------------------------|------------------------------------------------------|
